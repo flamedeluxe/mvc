@@ -6,7 +6,15 @@ use app\controllers\AuthController;
 use app\controllers\SiteController;
 use app\core\App;
 
-$app = new App(dirname(__DIR__));
+$config = [
+  'db' => [
+      'dsn' => 'mysql:host=localhost;port=3306;dbname=bee_base',
+      'user' => 'root',
+      'password' => 'root'
+  ]
+];
+
+$app = new App(dirname(__DIR__), $config);
 
 $app->router->get('/', [SiteController::class, 'index']);
 $app->router->get('/task', [SiteController::class, 'showTask']);

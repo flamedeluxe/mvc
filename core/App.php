@@ -16,6 +16,18 @@ class App
     public Response $response;
     public static App $app;
     public Controller $controller;
+    private Database $db;
+
+    public function __construct($rootPath, array $config)
+    {
+        self::$ROOT_DIR = $rootPath;
+        self::$app = $this;
+        $this->request = new Request();
+        $this->response = new Response();
+        $this->router = new Router($this->request, $this->response);
+
+        $this->db = new Database($config['db']);
+    }
 
     /**
      * @return Controller
@@ -31,14 +43,6 @@ class App
     public function setController(Controller $controller): void
     {
         $this->controller = $controller;
-    }
-    public function __construct($rootPath)
-    {
-        self::$ROOT_DIR = $rootPath;
-        self::$app = $this;
-        $this->request = new Request();
-        $this->response = new Response();
-        $this->router = new Router($this->request, $this->response);
     }
 
     public function run()
