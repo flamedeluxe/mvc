@@ -10,7 +10,7 @@ $app = new App(dirname(__DIR__));
 
 $app->router->get('/', [SiteController::class, 'index']);
 $app->router->get('/task', [SiteController::class, 'showTask']);
-$app->router->post('/task', [SiteController::class, 'handleTask']);
+$app->router->post('/task', [SiteController::class, 'showTask']);
 
 $app->router->get('/register', [AuthController::class, 'register']);
 $app->router->post('/register', [AuthController::class, 'register']);

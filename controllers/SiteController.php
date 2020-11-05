@@ -7,6 +7,7 @@ namespace app\controllers;
 use app\core\App;
 use app\core\Controller;
 use app\core\Request;
+use app\models\TaskModel;
 
 class SiteController extends Controller
 {
@@ -18,14 +19,21 @@ class SiteController extends Controller
         return $this->render('index', $params);
     }
 
-    public function handleTask(Request $request)
+    public function showTask(Request $request)
     {
-        $body = $request->getBody();
-    }
+        $errors = [];
+        $taskModel = new TaskModel();
+        if($request->isPost()) {
+            $taskModel->loadData($request->getBody());
 
-    public function showTask()
-    {
-        return $this->render('task');
+            if($taskModel->validate() && $taskModel->showTask()) {
+                return 'success';
+            }
+
+        }
+        return $this->render('task', [
+            'model' => $taskModel
+        ]);
     }
 
 }
