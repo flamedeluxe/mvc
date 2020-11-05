@@ -1,0 +1,11 @@
+{
+    "name": "flamedeluxe/mvc",
+    "description": "mvc test",
+    "authors": [
+        {
+            "name": "Andrey Zhgilev",
+            "email": "flamedeluxe@yanex.ru"
+        }
+    ],
+    "require": {}
+}
