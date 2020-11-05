@@ -6,6 +6,7 @@ namespace app\controllers;
 
 use app\core\App;
 use app\core\Controller;
+use app\core\Request;
 
 class SiteController extends Controller
 {
@@ -17,9 +18,9 @@ class SiteController extends Controller
         return $this->render('index', $params);
     }
 
-    public function handleTask()
+    public function handleTask(Request $request)
     {
-
+        $body = $request->getBody();
     }
 
     public function showTask()
