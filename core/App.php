@@ -1,5 +1,6 @@
 <?php
 
+
 namespace app\core;
 
 /**
@@ -11,17 +12,24 @@ namespace app\core;
 
 class App
 {
+
+    public static string $ROOT_DIR;
     public Router $router;
     public Request $request;
+    public Response $response;
+    public static App $app;
 
-    public function __construct()
+    public function __construct($rootPath)
     {
+        self::$ROOT_DIR = $rootPath;
+        self::$app = $this;
         $this->request = new Request();
-        $this->router = new Router($this->request);
+        $this->response = new Response();
+        $this->router = new Router($this->request, $this->response);
     }
 
     public function run()
     {
-        $this->router->resolve();
+        echo $this->router->resolve();
     }
 }
