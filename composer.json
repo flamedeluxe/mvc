@@ -7,5 +7,10 @@
             "email": "flamedeluxe@yanex.ru"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
     "require": {}
 }
