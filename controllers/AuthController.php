@@ -6,6 +6,7 @@ namespace app\controllers;
 
 use app\core\Controller;
 use app\core\Request;
+use app\models\LoginModel;
 
 class AuthController extends Controller
 {
@@ -19,7 +20,19 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        $errors = [];
+        $loginModel = new LoginModel();
         if($request->isPost()) {
+            $loginModel->loadData($request->getBody());
+
+            if($loginModel->validate() && $loginModel->login()) {
+
+            }else {
+
+            }
+            return $this->render('login', [
+                'model' => $loginModel
+            ]);
 
         }
         return $this->render('login');

@@ -18,7 +18,23 @@ class App
     public Request $request;
     public Response $response;
     public static App $app;
+    public Controller $controller;
 
+    /**
+     * @return Controller
+     */
+    public function getController(): Controller
+    {
+        return $this->controller;
+    }
+
+    /**
+     * @param Controller $controller
+     */
+    public function setController(Controller $controller): void
+    {
+        $this->controller = $controller;
+    }
     public function __construct($rootPath)
     {
         self::$ROOT_DIR = $rootPath;

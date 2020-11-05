@@ -39,7 +39,8 @@ class Router
             return $this->renderView($callback);
         }
         if(is_array($callback)) {
-            $callback[0] = new $callback[0]();
+            App::$app->controller = new $callback[0]();
+            $callback[0] = App::$app->controller;
         }
 
         return call_user_func($callback, $this->request);
@@ -98,8 +99,9 @@ class Router
 
     protected function layoutContent()
     {
+        $layout = App::$app->controller->layout;
         ob_start();
-        include_once App::$ROOT_DIR."/views/layouts/base.php";
+        include_once App::$ROOT_DIR."/views/layouts/$layout.php";
         return ob_get_clean();
     }
 
