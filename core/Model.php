@@ -4,11 +4,18 @@
 namespace app\core;
 
 
+/**
+ * Class Model
+ * @package app\core
+ */
 abstract class Model
 {
     public const RULE_REQUIRED = 'required';
     public const RULE_EMAIL = 'email';
 
+    /**
+     * @param $data
+     */
     public function loadData($data)
     {
         foreach ($data as $key => $value) {
@@ -18,10 +25,16 @@ abstract class Model
         }
     }
 
+    /**
+     * @return array
+     */
     abstract public function rules(): array;
 
     public array $errors = [];
 
+    /**
+     * @return bool
+     */
     public function validate()
     {
         foreach ($this->rules() as $attribute => $rules) {
@@ -43,6 +56,11 @@ abstract class Model
         return empty($this->errors);
     }
 
+    /**
+     * @param string $attribute
+     * @param string $rule
+     * @param array $params
+     */
     public function addError(string $attribute, string $rule, $params = [])
     {
         $message = $this->errorMessages()[$rule] ?? '';
@@ -52,6 +70,9 @@ abstract class Model
         $this->errors[$attribute][] = $message;
     }
 
+    /**
+     * @return array
+     */
     public function errorMessages()
     {
         return [
@@ -60,11 +81,19 @@ abstract class Model
         ];
     }
 
+    /**
+     * @param $attribute
+     * @return bool|mixed
+     */
     public function hasError($attribute)
     {
         return $this->errors[$attribute] ?? false;
     }
 
+    /**
+     * @param $attribute
+     * @return bool|mixed
+     */
     public function getFirstError($attribute)
     {
         return $this->errors[$attribute][0] ?? false;

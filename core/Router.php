@@ -26,6 +26,9 @@ class Router
         $this->response = $response;
     }
 
+    /**
+     * @return mixed
+     */
     public function resolve()
     {
         $path = $this->request->getPath();
@@ -84,6 +87,11 @@ class Router
         $this->routes['delete'][$path] = $callback;
     }
 
+    /**
+     * @param $view
+     * @param $params
+     * @return mixed
+     */
     public function renderView($view, $params)
     {
         $layoutContent = $this->layoutContent();
@@ -91,12 +99,19 @@ class Router
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
+    /**
+     * @param $viewContent
+     * @return mixed
+     */
     private function renderContent($viewContent)
     {
         $layoutContent = $this->layoutContent();
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
+    /**
+     * @return false|string
+     */
     protected function layoutContent()
     {
         $layout = App::$app->controller->layout;
@@ -105,6 +120,11 @@ class Router
         return ob_get_clean();
     }
 
+    /**
+     * @param $view
+     * @param $params
+     * @return false|string
+     */
     protected function renderOnlyView($view, $params)
     {
         extract($params);

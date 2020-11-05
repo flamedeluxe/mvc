@@ -3,16 +3,13 @@
 
 namespace app\core;
 
+
 /**
  * Class App
- *
- * @author Andrey Zhgilev
  * @package app\core
  */
-
 class App
 {
-
     public static string $ROOT_DIR;
     public Router $router;
     public Request $request;

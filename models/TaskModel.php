@@ -6,6 +6,10 @@ namespace app\models;
 
 use app\core\Model;
 
+/**
+ * Class TaskModel
+ * @package app\models
+ */
 class TaskModel extends Model
 {
     public string $username;
@@ -14,18 +18,8 @@ class TaskModel extends Model
     public int $done;
 
     /**
-     * TaskModel constructor.
+     * @return array
      */
-    public function __construct()
-    {
-
-    }
-
-    public function create()
-    {
-
-    }
-
     public function rules(): array
     {
         return [

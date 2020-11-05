@@ -6,16 +6,18 @@ namespace app\models;
 
 use app\core\Model;
 
+/**
+ * Class LoginModel
+ * @package app\models
+ */
 class LoginModel extends Model
 {
     public string $email;
     public string $password;
 
-    public function login()
-    {
-
-    }
-
+    /**
+     * @return array
+     */
     public function rules(): array
     {
         return [

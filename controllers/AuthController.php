@@ -8,8 +8,16 @@ use app\core\Controller;
 use app\core\Request;
 use app\models\LoginModel;
 
+/**
+ * Class AuthController
+ * @package app\controllers
+ */
 class AuthController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function register(Request $request)
     {
         if($request->isPost()) {
@@ -18,6 +26,10 @@ class AuthController extends Controller
         return $this->render('register');
     }
 
+    /**
+     * @param Request $request
+     * @return mixed|string
+     */
     public function login(Request $request)
     {
         $errors = [];

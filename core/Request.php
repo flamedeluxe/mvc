@@ -12,6 +12,9 @@ namespace app\core;
 
 class Request
 {
+    /**
+     * @return bool|mixed|string
+     */
     public function getPath()
     {
         $path = $_SERVER['REQUEST_URI'] ?? '/';
@@ -22,21 +25,33 @@ class Request
         return substr($path, 0, $position);
     }
 
+    /**
+     * @return string
+     */
     public function method()
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
     }
 
+    /**
+     * @return bool
+     */
     public function isGet()
     {
         return $this->method() === 'get';
     }
 
+    /**
+     * @return bool
+     */
     public function isPost()
     {
         return $this->method() === 'post';
     }
 
+    /**
+     * @return array
+     */
     public function getBody()
     {
         $body = [];
